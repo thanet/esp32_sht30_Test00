@@ -5,7 +5,17 @@
 #include <esp_wifi.h>
 #include <WiFi.h>
 
+// for sensor read data 
 SHT3xSensor sht3x;
+float temperature = 0.0;
+float humidity = 0.0;
+
+// for send data via esp_Now
+    // Set your Board ID (ESP32 Sender #1 = BOARD_ID 1, ESP32 Sender #2 = BOARD_ID 2, etc)
+#define BOARD_ID F2_S01
+//MAC Address of the receiver 
+uint8_t broadcastAddress[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+
 
 void setup() {
     Serial.begin(115200);
@@ -20,8 +30,8 @@ void setup() {
 }
 
 void loop() {
-    float temperature = 0.0;
-    float humidity = 0.0;
+    // float temperature = 0.0;
+    // float humidity = 0.0;
 
     if (sht3x.readMeasurement(temperature, humidity)) {
         Serial.print("Temperature: ");
@@ -35,4 +45,6 @@ void loop() {
     }
 
     delay(1000); // Adjust the delay as needed
+
+
 }
