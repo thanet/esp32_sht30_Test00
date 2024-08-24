@@ -1,6 +1,10 @@
 #include <Wire.h>
 #include "SHT3xSensor.h"
 
+#include <esp_now.h>
+#include <esp_wifi.h>
+#include <WiFi.h>
+
 SHT3xSensor sht3x;
 
 void setup() {
